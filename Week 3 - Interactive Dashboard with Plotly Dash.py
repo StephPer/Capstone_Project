@@ -1,6 +1,8 @@
 # Import required libraries
 import pandas as pd
 import dash
+#from dash import html
+#from dash import dcc
 import dash_html_components as html
 import dash_core_components as dcc
 from dash.dependencies import Input, Output
@@ -54,7 +56,7 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
                                 dcc.RangeSlider(
                                     id='payload-slider',
                                     min=0,
-                                    max=100000,
+                                    max=10000,
                                     step=1000,
                                     value=[min_payload, max_payload],
                                     marks={0: '0', 100: '100'}
@@ -70,7 +72,7 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
 # Function decorator to specify function input and output
 @app.callback(
     Output(component_id='success-pie-chart', component_property='figure'),
-    Input(component_id='site-dropdown', component_property='value')
+    [Input(component_id='site-dropdown', component_property='value')]
 )
                                     
 def get_pie_chart(entered_site):
